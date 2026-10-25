@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: 'Tajawal', Arial, sans-serif;
+  color: #090909;
+  background: #fff;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+
+.page {
+  position: relative;
+  width: min(100%, 510px);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 82px 15px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-actions { position: absolute; top: 68px; right: 20px; z-index: 5; }
+.top-menu-button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid #111;
+  border-radius: 50%;
+  background: white;
+  color: #111;
+  font-size: 23px;
+  transition: background .2s ease, transform .2s ease;
+}
+.top-menu-button:hover { background: #f3f3f3; transform: rotate(90deg); }
+.page-menu, .link-menu {
+  position: absolute;
+  top: 51px;
+  right: 0;
+  width: 194px;
+  padding: 5px;
+  background: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 13px;
+  box-shadow: 0 12px 30px #00000018;
+  animation: menu-in .18s ease both;
+}
+.page-menu button, .link-menu button, .link-menu a { width: 100%; display: flex; align-items: center; gap: 9px; padding: 10px; border: 0; border-radius: 8px; background: transparent; color: #111; text-align: right; text-decoration: none; font-family: inherit; font-size: 15px; font-weight: 500; }
+.page-menu button:hover, .link-menu button:hover, .link-menu a:hover { background: #f5f5f5; }
+
+.profile { display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; }
+.logo-container {
+  width: 180px;
+  height: 180px;
+  margin-inline: auto;
+  flex: none;
+  overflow: hidden;
+  border: 1.5px solid #171717;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 3px 5px #0000001c;
+}
+.store-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.profile h1 { margin: 18px 0 0; font-size: 36px; font-weight: 800; line-height: 1.3; letter-spacing: -1.5px; }
+.title-rule { width: 40px; height: 2px; margin-top: 12px; background: #171717; transform-origin: center; animation: rule-in .55s .3s ease both; }
+.description { margin: 17px 0 0; color: #606060; font-size: 18px; font-weight: 500; line-height: 1.4; }
+
+.links { width: 100%; margin-top: 20px; display: flex; flex-direction: column; gap: 11px; }
+.link-row {
+  position: relative;
+  width: 100%;
+  height: 59px;
+  border: 1.5px solid #161616;
+  border-radius: 999px;
+  background: #fff;
+  animation: row-in .78s cubic-bezier(.16, 1, .3, 1) backwards;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.link-row:hover { background: #fffafa; border-color: #bf1220; transform: translateY(-2px); box-shadow: 0 7px 18px #d90c1710; }
+.link-row.menu-active { z-index: 4; }
+.link-row:focus-within { outline: 2px solid #d90c17; outline-offset: 3px; }
+.link-row a { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #111; text-decoration: none; font-size: 18px; font-weight: 700; padding: 0 54px; white-space: nowrap; }
+.link-row .link-icon { position: absolute; right: 18px; width: 23px; height: 23px; stroke-width: 1.8; }
+.link-more { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 25px; height: 36px; display: grid; place-items: center; border: 0; background: transparent; color: #111; font-size: 17px; border-radius: 15px; }
+.link-more:hover { background: #eaeaea; }
+.link-menu { position: absolute; top: 64px; left: 0; right: auto; z-index: 6; }
+.link-menu a { position: static; inset: auto; justify-content: flex-start; padding: 10px; white-space: normal; }
+
+.footer { margin-top: 39px; display: flex; align-items: center; gap: 7px; text-align: center; color: #111; font-size: 19px; font-weight: 700; }
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 30px; background: #171717; color: #fff; white-space: nowrap; font-size: 15px; box-shadow: 0 8px 24px #0003; }
+
+@keyframes row-in { from { opacity: 0; filter: blur(4px); transform: translateX(-85px) scale(.985); } to { opacity: 1; filter: blur(0); transform: translateX(0) scale(1); } }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rule-in { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+@media (max-width: 370px) {
+  .page { padding-top: 78px; }
+  .top-actions { top: 57px; right: 15px; }
+  .logo-container { width: 165px; height: 165px; }
+  .profile h1 { font-size: 33px; }
+  .link-row a { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
